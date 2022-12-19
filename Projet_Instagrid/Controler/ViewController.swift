@@ -12,8 +12,11 @@ class ViewController: UIViewController {
 // MARK: Outlet
     @IBOutlet var myPictureButton : [UIButton]!
     @IBOutlet var myLayoutButton : [UIButton]!
+    @IBOutlet var myButtonStackView: UIStackView!
     
-// MARK: Outlet Action
+    @IBOutlet var myUIView: UIView!
+    
+    // MARK: Outlet Action
     @IBAction func myLayoutButtonTap(_ sender: UIButton){
         updateLayoutButton(sender: sender)
     }
@@ -22,10 +25,16 @@ class ViewController: UIViewController {
         updatePictureButton(sender)
     }
     
-// MARK: Core
+// MARK: View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         pictureButtonShaping()
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(_:)))
+        swipeGesture.direction = .up
+        swipeGesture.numberOfTouchesRequired = 1
+        myButtonStackView.addGestureRecognizer(swipeGesture)
+        myButtonStackView.isUserInteractionEnabled = true
     }
 
 // MARK: Methods
@@ -68,6 +77,17 @@ class ViewController: UIViewController {
         let imagePickerController = UIImagePickerController()
                 imagePickerController.delegate = self
                 present(imagePickerController, animated: true)
+    }
+    
+//    Respond to the swipe gesture
+    @objc func respondToSwipeGesture (_ gesture:UISwipeGestureRecognizer) {
+        let transform : CGAffineTransform
+        transform = CGAffineTransform(translationX: 0, y: -UIScreen.main.bounds.height)
+        UIView.animate(withDuration: 0.3) {
+            self.myButtonStackView.transform = transform
+        } completion: { _ in
+            self.myButtonStackView.transform = .identity
+        }
     }
 }
 

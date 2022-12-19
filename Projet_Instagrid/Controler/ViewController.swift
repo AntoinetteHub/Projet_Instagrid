@@ -86,8 +86,28 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: 0.3) {
             self.myButtonStackView.transform = transform
         } completion: { _ in
-            self.myButtonStackView.transform = .identity
+            self.shareImage()
         }
+    }
+    
+//    partage d'une image avec d'autres applications
+    private func shareImage() {
+        let image = imageWithStackView(stackView: myButtonStackView)
+        let imageToShare = [image]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = view
+        present(activityViewController, animated: true)
+        activityViewController.completionWithItemsHandler = { _, _, _, _ in
+            UIView.animate(withDuration: 0.3) {
+                self.myButtonStackView.transform = .identity
+            }
+        }
+    }
+    
+//    renvoie une image à partir d'une stack view
+    private func imageWithStackView (stackView: UIStackView) -> UIImage {
+        let image = UIGraphicsImageRenderer ( size: stackView.bounds.size )
+        return image.image { _ in stackView.drawHierarchy(in: stackView.bounds, afterScreenUpdates: true) }
     }
 }
 

@@ -12,14 +12,21 @@ Application de montage Photo ( choix de 3 ou 4 photos) avec possibilité d’enr
 **Etape 1:**
 Vue centrale adaptable selon la combinaison choisie par l’utilisateur.
 
+<img src="https://user-images.githubusercontent.com/120408773/208641550-6ee6f124-a094-4a2a-8d2b-0563a51544d0.png" width="19%" height="19%" />  <img src="https://user-images.githubusercontent.com/120408773/208641587-c3525ed0-5fe3-4e99-b289-faba04901056.png" width="20%" height="20%" />  <img src="https://user-images.githubusercontent.com/120408773/208641603-93e16d51-d6f9-4064-89eb-79a3ec3c5731.png" width="19.5%" height="19.5%" />
+
 **Etape 2:**
 Récupérer une photo depuis les images du téléphone de l’utilisateur pour remplir le montage photo.
+
+<img src="https://user-images.githubusercontent.com/120408773/208641613-5d6c21f1-d157-44e1-a417-3b58bed062a2.png" width="20%" height="20%" />
 
 **Etape 3:**
 Reconnaitre une gestuelle pour partager la combinaison photo
 
 **Etape 4:**
 Partager la combinaison de photos faites. (Pour cela il faut que la vue partager soit de type UIImage…)
+
+<img src="https://user-images.githubusercontent.com/120408773/208641630-e143ffbb-1434-4ef6-8d1d-5751bd9aa496.png" width="20%" height="20%" />
+
 ***
 ## Notions Clés
 **Mettre en forme un bouton:**

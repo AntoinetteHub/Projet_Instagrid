@@ -50,6 +50,8 @@ class ViewController: UIViewController {
     private func updateLayoutButton(sender:UIButton) {
         for button in myLayoutButton {
             button.setImage(nil, for: .normal)
+            button.contentHorizontalAlignment = .fill
+            button.contentVerticalAlignment = .fill
         }
         sender.setImage(UIImage(named: "Selected"), for: .normal)
         changePictureButtonLayout(sender)

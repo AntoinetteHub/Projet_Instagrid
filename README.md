@@ -27,6 +27,11 @@ Partager la combinaison de photos faites. (Pour cela il faut que la vue partager
 
 <img src="https://user-images.githubusercontent.com/120408773/208641630-e143ffbb-1434-4ef6-8d1d-5751bd9aa496.png" width="20%" height="20%" />
 
+**Etape 5:**
+Créer des contraintes associées au mode portrait et d'autres au mode paysage pour permettre l'utilisation de l'application dans les deux directions
+
+<img src="https://github.com/AntoinetteHub/Projet_Instagrid/blob/main/Screenshots/6.png" width="20%" height="20%" />. <img src="https://github.com/AntoinetteHub/Projet_Instagrid/blob/main/Screenshots/7.png" width="40%" height="40%" />
+
 ***
 ## Notions Clés
 **Mettre en forme un bouton:**
@@ -96,3 +101,6 @@ extension ViewController : UIImagePickerControllerDelegate, UINavigationControll
         return image.image { _ in stackView.drawHierarchy(in: stackView.bounds, afterScreenUpdates: true) }
     }
 ```
+**Variantion des contraintes mode portrait/paysage:**
+
+<img src="https://github.com/AntoinetteHub/Projet_Instagrid/blob/main/Screenshots/8.png" width="20%" height="20%" />  <img src="https://github.com/AntoinetteHub/Projet_Instagrid/blob/main/Screenshots/9.png" width="20%" height="20%" />

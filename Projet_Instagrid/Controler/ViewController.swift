@@ -35,6 +35,12 @@ class ViewController: UIViewController {
         swipeGesture.numberOfTouchesRequired = 1
         myButtonStackView.addGestureRecognizer(swipeGesture)
         myButtonStackView.isUserInteractionEnabled = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(changeSwipeGestureDirection), name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
 // MARK: Methods
@@ -83,8 +89,17 @@ class ViewController: UIViewController {
     
 //    Respond to the swipe gesture
     @objc func respondToSwipeGesture (_ gesture:UISwipeGestureRecognizer) {
-        let transform : CGAffineTransform
+        var transform : CGAffineTransform
         transform = CGAffineTransform(translationX: 0, y: -UIScreen.main.bounds.height)
+        if let recognizer = myButtonStackView.gestureRecognizers?[0] as? UISwipeGestureRecognizer {
+            switch recognizer.direction {
+            case .left :
+                transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width, y: 0)
+            default:
+                transform = CGAffineTransform(translationX: 0, y: -UIScreen.main.bounds.height)
+            }
+        }
+        
         UIView.animate(withDuration: 0.3) {
             self.myButtonStackView.transform = transform
         } completion: { _ in
@@ -111,6 +126,18 @@ class ViewController: UIViewController {
         let image = UIGraphicsImageRenderer ( size: stackView.bounds.size )
         return image.image { _ in stackView.drawHierarchy(in: stackView.bounds, afterScreenUpdates: true) }
     }
+    
+//    change le sens de la gestuelle swipgesture suivant la notification envoye sur l'orientation du telephone
+    @objc private func changeSwipeGestureDirection() {
+        if let recognizer = myButtonStackView.gestureRecognizers?[0] as? UISwipeGestureRecognizer {
+            if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight {
+                recognizer.direction = .left
+            } else {
+                recognizer.direction = .up
+            }
+        }
+    }
+    
 }
 
 extension ViewController: UIImagePickerControllerDelegate,UINavigationControllerDelegate {

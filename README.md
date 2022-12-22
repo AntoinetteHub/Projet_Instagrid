@@ -32,6 +32,9 @@ Créer des contraintes associées au mode portrait et d'autres au mode paysage p
 
 <img src="https://github.com/AntoinetteHub/Projet_Instagrid/blob/main/Screenshots/6.png" width="20%" height="20%" />. <img src="https://github.com/AntoinetteHub/Projet_Instagrid/blob/main/Screenshots/7.png" width="40%" height="40%" />
 
+**Etape 6:**
+Ajouter une notification pour connaitre l'orientation du téléphone
+
 ***
 ## Notions Clés
 **Mettre en forme un bouton:**
@@ -104,3 +107,16 @@ extension ViewController : UIImagePickerControllerDelegate, UINavigationControll
 **Variantion des contraintes mode portrait/paysage:**
 
 <img src="https://github.com/AntoinetteHub/Projet_Instagrid/blob/main/Screenshots/8.png" width="20%" height="20%" />  <img src="https://github.com/AntoinetteHub/Projet_Instagrid/blob/main/Screenshots/9.png" width="20%" height="20%" />
+
+**Ajout notification d'orientation:**
+
+```
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(WhatIWantToDo), name: UIDevice.orientationDidChangeNotification, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+```
